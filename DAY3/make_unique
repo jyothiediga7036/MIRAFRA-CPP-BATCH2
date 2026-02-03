@@ -1,0 +1,35 @@
+#include<iostream>
+#include<memory>
+#include<bits/stdc++.h>
+using namespace std;
+class gpio
+{
+    bool clk;
+    public:
+    gpio():clk(0){}
+    void input()
+    {
+        if(clk)
+        {   
+            cout<<"gpio pin enable"<<endl;
+            clk=0;
+        }
+        else
+        cout<<"enable the clock"<<endl;
+    }
+    void del()
+    {
+        if(!clk)
+        {
+            cout<<"gpion pin disable"<<endl;
+            clk=1;
+        }
+    }
+};
+int main()
+{
+    unique_ptr<gpio>p=make_unique<gpio>();
+    p->input();
+    p->del();
+    
+}
