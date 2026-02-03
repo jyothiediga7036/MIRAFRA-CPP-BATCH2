@@ -1,0 +1,25 @@
+#include<iostream>
+#include<memory>
+using namespace std;
+class uniqueptr
+{
+	unique_ptr<int>p;
+	public:
+	uniqueptr(int x=0):p(make_unique<int>(x))   // uniquepointer has a data member of class
+	{
+		cout<<"initialization"<<endl;
+	}
+	void show()const
+	{
+		cout<<"p value="<<*p<<endl;
+	}
+};
+int main()
+{
+	uniqueptr p1(40);
+	p1.show();
+//	uniqueptr p2=p1;  error we cant copy 
+	 uniqueptr p3=move(p1);
+	 //p1.show();  // segmentation fault
+	p3.show();
+}
